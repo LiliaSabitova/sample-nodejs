@@ -9,12 +9,60 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+variables:
+- name: nodeversion
+  value: '10.x' # '16.10.x'
 
-- script: |
-    npm install
-  displayName: 'npm install'
+jobs:
+
+- job: 'MS_Hosted'
+  displayName: 'MS-Hosted'
+  strategy:
+    matrix:
+      linux:
+        imageName: 'ubuntu-latest'
+      mac:
+        imageName: 'macOS-latest'
+      windows:
+        imageName: 'windows-latest'
+      linuxnode10:
+        imageName: 'ubuntu-latest'
+        AGENT_USE_NODE10: 'true'
+      macnode10:
+        imageName: 'macOS-latest'
+        AGENT_USE_NODE10: 'true'
+      windowsnode10:
+        imageName: 'windows-latest'
+        AGENT_USE_NODE10: 'true'
+
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: ${{ variables.nodeversion }}
+    displayName: 'Install Node.js'
+
+  - script: |
+      npm install
+    displayName: 'npm install'
+
+
+
+- job: 'Self_Hosted'
+  displayName: 'Self-Hosted'
+  strategy:
+    matrix:
+      'Node16':
+        SomeVariable: 'somevalue'
+      'Node10':
+        AGENT_USE_NODE10: 'true'
+  pool: Default
+
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: ${{ variables.nodeversion }}
+    displayName: 'Install Node.js'
+
+  - script: |
+      npm install
+    displayName: 'npm install'
