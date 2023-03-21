@@ -52,7 +52,7 @@ jobs:
   strategy:
     matrix:
       'Node16':
-        SomeVariable: 'somevalue'
+        AGENT_USE_NODE10: 'false'
       'Node10':
         AGENT_USE_NODE10: 'true'
   pool: Default
