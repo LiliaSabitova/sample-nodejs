@@ -19,19 +19,19 @@ jobs:
   displayName: 'MS-Hosted'
   strategy:
     matrix:
-      'linux':
+      'Linux Node16':
         imageName: 'ubuntu-latest'
-      'mac':
+      'Mac Node16':
         imageName: 'macOS-latest'
-      'windows':
+      'Windows Node16':
         imageName: 'windows-latest'
-      'linuxnode10':
+      'Linux Node10':
         imageName: 'ubuntu-latest'
         AGENT_USE_NODE10: 'true'
-      'macnode10':
+      'Mac Node10':
         imageName: 'macOS-latest'
         AGENT_USE_NODE10: 'true'
-      'windows node10':
+      'Windows Node10':
         imageName: 'windows-latest'
         AGENT_USE_NODE10: 'true'
 
