@@ -10,7 +10,7 @@ pool:
 
 variables:
 - name: nodeversion
-  value: '18.15.x' # '10.x' 
+  value: '18.10.x' # '10.x' 
 
 jobs:
 
