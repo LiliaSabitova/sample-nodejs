@@ -15,13 +15,17 @@ variables:
 parameters:
 - name: runmshosted
   default: true
+  displayName: Run MS-Hosted
+  type: boolean
 - name: runselfhosted
   default: true
+  displayName: Run MS-Hosted
+  type: boolean
 
 jobs:
 
 - job: 'MS_Hosted'
-  condition: ${{ variables.runmshosted }}
+  condition: ${{ parameters.runmshosted }}
   displayName: 'MS-Hosted'
   strategy:
     matrix:
@@ -54,7 +58,7 @@ jobs:
 
 
 - job: 'Self_Hosted'
-  condition: ${{ variables.runselfhosted }}
+  condition: ${{ parameters.runselfhosted }}
   displayName: 'Self-Hosted'
   strategy:
     matrix:
