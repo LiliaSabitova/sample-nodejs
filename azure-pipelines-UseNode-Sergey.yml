@@ -10,11 +10,16 @@ pool:
 
 variables:
 - name: nodeversion
-  value: '11.15.x' # '10.x' 
+  value: '10.x' # '11.15.x' # 
+- name: runmshosted
+  value: true
+- name: runselfhosted
+  value: true
 
 jobs:
 
 - job: 'MS_Hosted'
+  condition: ${{ variables.runmshosted }}
   displayName: 'MS-Hosted'
   strategy:
     matrix:
@@ -35,9 +40,9 @@ jobs:
         AGENT_USE_NODE10: 'true'
 
   steps:
-  - task: NodeTool@0
+  - task: UseNode@1
     inputs:
-      versionSpec: ${{ variables.nodeversion }}
+      version: ${{ variables.nodeversion }}
     displayName: 'Install Node.js'
 
   - script: |
@@ -47,6 +52,7 @@ jobs:
 
 
 - job: 'Self_Hosted'
+  condition: ${{ variables.runselfhosted }}
   displayName: 'Self-Hosted'
   strategy:
     matrix:
@@ -57,9 +63,9 @@ jobs:
   pool: Default
 
   steps:
-  - task: NodeTool@0 #.213.0
+  - task: UseNode@1
     inputs:
-      versionSpec: ${{ variables.nodeversion }}
+      version: ${{ variables.nodeversion }}
     displayName: 'Install Node.js'
 
   - script: |
