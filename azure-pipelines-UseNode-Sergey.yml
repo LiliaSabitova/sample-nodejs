@@ -11,10 +11,12 @@ pool:
 variables:
 - name: nodeversion
   value: '10.x' # '11.15.x' # 
+
+parameters:
 - name: runmshosted
-  value: true
+  default: true
 - name: runselfhosted
-  value: true
+  default: true
 
 jobs:
 
