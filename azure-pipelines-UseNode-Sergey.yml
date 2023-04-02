@@ -19,7 +19,7 @@ parameters:
   type: boolean
 - name: runselfhosted
   default: true
-  displayName: Run MS-Hosted
+  displayName: Run Self-Hosted
   type: boolean
 
 jobs:
