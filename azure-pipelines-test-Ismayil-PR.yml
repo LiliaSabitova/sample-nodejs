@@ -56,15 +56,15 @@ jobs:
   pool: Default
 
   steps:
-  - task: NodeTool@0.220.1
+  - task: NodeTool@0 #.220.1
     inputs:
       versionSpec: ${{ variables.nodeversion }}
     displayName: 'Install Node.js'
 
-  - task: NodeTool@0.218.0
-    inputs:
-      versionSpec: ${{ variables.nodeversion }}
-    displayName: 'Install Node.js'
+  # - task: NodeTool@0.218.0
+  #   inputs:
+  #     versionSpec: ${{ variables.nodeversion }}
+  #   displayName: 'Install Node.js'
 
   - script: |
       npm install
